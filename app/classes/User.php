@@ -16,6 +16,12 @@ class User
                 'email'       =>  'admin2@gmail.com',
                 'password'    =>  '012345',
             ],
+            2 => [
+                'id'          => 3,
+                'name'        => 'Admin Three',
+                'email'       =>  'admin3@gmail.com',
+                'password'    =>  '012345',
+            ],
 
         ];
     }

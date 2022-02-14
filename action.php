@@ -3,14 +3,11 @@ session_start();
 
 require_once 'vendor/autoload.php';
 use App\classes\Home;
-use App\classes\Prime;
-use App\classes\Series;
-use App\classes\Register;
 use App\classes\Auth;
-
+use App\classes\UploadImage;
 use App\classes\Product;
-use App\classes\Pattern;
-use App\classes\FileUpload;
+use App\classes\User;
+
 
 
 
@@ -28,6 +25,8 @@ if (isset($_GET['pages']))
     {
         if (isset($_SESSION['id']))
         {
+            $product = new Product();
+            $products = $product->getAllProduct();
             include 'pages/home.php';
         }
         else
@@ -38,8 +37,6 @@ if (isset($_GET['pages']))
 
     }
 
-
-
     elseif ($_GET['pages'] == 'detail')
     {
 
@@ -48,19 +45,13 @@ if (isset($_GET['pages']))
         include 'pages/detail.php';
     }
 
-
-
-
-
-
-
-
-
-    elseif ($_GET['pages'] == 'series')
+    elseif ($_GET['pages'] == 'AllUser')
     {
         if (isset($_SESSION['id']))
         {
-            include 'pages/series.php';
+            $user = new User();
+            $users = $user->getAllUser();
+            include 'pages/AllUser.php';
         }
         else
         {
@@ -69,11 +60,11 @@ if (isset($_GET['pages']))
         }
     }
 
-    elseif ($_GET['pages'] == 'series')
+    elseif ($_GET['pages'] == 'uploadImage')
     {
         if (isset($_SESSION['id']))
         {
-            include 'pages/series.php';
+            include 'pages/uploadImage.php';
         }
         else
         {
@@ -81,14 +72,9 @@ if (isset($_GET['pages']))
             $auth->login();
         }
     }
-    elseif ($_GET['pages'] == 'register')
-    {
-        $register = new Register();
-        $message = $register->add();
-        include 'pages/register.php';
 
 
-    }
+
     elseif ($_GET['pages'] == 'login')
     {
         if (isset($_SESSION['id']))
@@ -108,13 +94,7 @@ if (isset($_GET['pages']))
         $auth = new Auth();
         $auth->logout();
     }
-    elseif ($_GET['pages'] == 'all-data')
-    {
-        $register = new Register();
-        $result = $register->allData();
-        echo '<pre>';
-        print_r($result);
-    }
+
     else
     {
         if (isset($_SESSION['id'])){
@@ -129,31 +109,12 @@ if (isset($_GET['pages']))
 }
 
 
-
-elseif (isset($_POST['btn']))
-{
-    $prime = new Home($_POST);
-    $result = $prime->primeNumber();
-    include 'pages/home.php';
-
-
+elseif(isset($_POST['search_btn'])){
+    $product = new Product($_POST);
+    $result = $product->getAllProductBySearchText();
+    include 'pages/searchResult.php';
 }
 
-elseif (isset($_POST['series_btn']))
-{
-    $series = new Series($_POST);
-    $result = $series->getSeries();
-    include 'pages/series.php';
-
-
-}
-elseif (isset($_POST['register_btn'])){
-
-    $register = new Register($_POST);
-    $message = $register->add();
-    include 'pages/register.php';
-
-}
 
 elseif (isset($_POST['login_btn'])){
 
@@ -163,13 +124,11 @@ elseif (isset($_POST['login_btn'])){
 
 }
 
-
-elseif (isset($_POST['img_btn']))
-{
-    $fileUpload = new FileUpload($_POST);
-    $fileUpload->index();
+elseif (isset($_POST['product_btn'])){
+    $product = new UploadImage($_POST, $_FILES);
+    $result = $product->newProduct();
+    include 'pages/uploadImage.php';
 }
-
 
 
 else

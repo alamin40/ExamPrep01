@@ -16,10 +16,9 @@
         <div class="container">
             <a href="action.php?pages=home" class="navbar-brand">Logo</a>
             <ul class="navbar-nav">
-                <li><a href="action.php?pages=home" class="nav-link">Home</a></li>
-                <li><a href="action.php?pages=series" class="nav-link">Series</a></li>
-<!--                <li><a href="action.php?pages=register" class="nav-link">Registration</a></li>-->
-<!--                <li><a href="action.php?pages=all-data" class="nav-link">All Data</a></li>-->
+                <li><a href="action.php?pages=home" class="nav-link">All Product</a></li>
+                <li><a href="action.php?pages=AllUser" class="nav-link">All user</a></li>
+                <li><a href="action.php?pages=uploadImage" class="nav-link">Upolad Image</a></li>
                 <li class="dropdown">
                     <a href="action.php?pages=register" class="nav-link dropdown-toggle" data-toggle="dropdown"> <?php echo $_SESSION['name']; ?> </a>
                     <ul class="dropdown-menu">

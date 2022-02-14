@@ -16,10 +16,6 @@
         <div class="container">
             <a href="action.php?pages=home" class="navbar-brand">Logo</a>
             <ul class="navbar-nav">
-                <li><a href="action.php?pages=home" class="nav-link">Home</a></li>
-<!--                <li><a href="action.php?pages=series" class="nav-link">Series</a></li>-->
-<!--                <li><a href="action.php?pages=register" class="nav-link">Registration</a></li>-->
-                <li><a href="action.php?pages=all-data" class="nav-link">Example</a></li>
                 <li><a href="action.php?pages=login" class="nav-link">Login</a></li>
 
 
